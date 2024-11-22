@@ -50,7 +50,8 @@ async def desechar(ctx, num:int):
 @bot.command()
 async def consejos(ctx):
     f = open("consejos.txt", "r")
-    await ctx.send(f.read())
+    consejo = f.readline(random.randint(1,len(f)))
+    await ctx.send(consejo)
     f.close()
     
 bot.run("Token")
