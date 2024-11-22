@@ -24,10 +24,33 @@ async def info(ctx):
 
 @bot.command()
 async def residuos(ctx):
-    f = open("demofile.txt", "r")
-    for x in f:
-        print(x)
-    lst += f'{residuo}\n'
+    lst = ''
+    number = 0
+    f = open("residuos.txt", "r")
+    for residuo in f:
+        number += 1
+        lst += f'{number} {residuo}\n'
+    f.close()
     await ctx.send(lst)
 
+@bot.command()
+async def desechar(ctx, num:int):
+    f = open("residuos.txt", "r")
+    residuo = {f.readline(num)}
+    if residuo in residuos['Residuos orgánicos']:
+        l_desechar = 'el compost'
+    elif residuo in residuos['Residuos reciclables']:
+        l_desechar = 'el contenedor de reciclaje'
+    elif residuo in residuos['Residuos no reciclables']:
+        l_desechar = 'Tacho de basura'
+    f.close()
+    
+    await ctx.send(f'El residuo {residuo} debe tirarse en{l_desechar}')
+
+@bot.command()
+async def consejos(ctx):
+    f = open("consejos.txt", "r")
+    await ctx.send(f.read())
+    f.close()
+    
 bot.run("Token")
