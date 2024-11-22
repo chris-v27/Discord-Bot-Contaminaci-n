@@ -24,9 +24,10 @@ async def info(ctx):
 
 @bot.command()
 async def residuos(ctx):
-    lst = ''
-    for residuo in range(random.shuffle(residuos.values())):
-        lst += f'{residuo}\n'
+    f = open("demofile.txt", "r")
+    for x in f:
+        print(x)
+    lst += f'{residuo}\n'
     await ctx.send(lst)
 
 bot.run("Token")
